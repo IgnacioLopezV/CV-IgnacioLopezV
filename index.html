@@ -1,292 +1,411 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+import React, { useState } from 'react';
+import { Menu, X, ChevronRight, BarChart2, Globe, Users, CheckCircle, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiEmpresa | Soluciones Innovadoras</title>
-  
-  <!-- Carga de Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Configuración de la fuente Inter -->
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
-  
-  <!-- Importación de la fuente Inter desde Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
+const Website = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-<body class="bg-gray-50 text-gray-700">
+  // Función para cerrar el menú al hacer clic en un enlace (móvil)
+  const closeMenu = () => setIsMenuOpen(false);
 
-  <!-- ===== Header & Navigation ===== -->
-  <nav class="bg-white shadow-md fixed w-full top-0 z-50">
-    <div class="max-w-6xl mx-auto px-6 py-4">
-      <div class="flex justify-between items-center">
-        <!-- Logo -->
-        <a href="#inicio" class="text-3xl font-bold text-blue-600">MiEmpresa</a>
-        
-        <!-- Navigation Links (Desktop) -->
-        <div class="hidden md:flex space-x-8">
-          <a href="#inicio" class="text-gray-600 hover:text-blue-600 transition-colors">Inicio</a>
-          <a href="#quienes-somos" class="text-gray-600 hover:text-blue-600 transition-colors">Quiénes Somos</a>
-          <a href="#que-hacemos" class="text-gray-600 hover:text-blue-600 transition-colors">Qué Hacemos</a>
-          <a href="#servicios" class="text-gray-600 hover:text-blue-600 transition-colors">Servicios</a>
-          <a href="#contacto" class="text-gray-600 hover:text-blue-600 transition-colors">Contacto</a>
-        </div>
-        
-        <!-- Mobile Menu Button (Hamburger) -->
-        <button id="menu-button" class="md:hidden text-gray-700 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-    
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-200">
-      <a href="#inicio" class="block text-center py-3 px-6 text-gray-700 hover:bg-blue-50 transition-colors">Inicio</a>
-      <a href="#quienes-somos" class="block text-center py-3 px-6 text-gray-700 hover:bg-blue-50 transition-colors">Quiénes Somos</a>
-      <a href="#que-hacemos" class="block text-center py-3 px-6 text-gray-700 hover:bg-blue-50 transition-colors">Qué Hacemos</a>
-      <a href="#servicios" class="block text-center py-3 px-6 text-gray-700 hover:bg-blue-50 transition-colors">Servicios</a>
-      <a href="#contacto" class="block text-center py-3 px-6 text-gray-700 hover:bg-blue-50 transition-colors">Contacto</a>
-    </div>
-  </nav>
-
-  <!-- ===== Hero Section ===== -->
-  <header id="inicio" class="bg-blue-600 text-white pt-32 pb-20 text-center">
-    <div class="max-w-4xl mx-auto px-6">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6">Innovación y Compromiso a su Servicio</h1>
-      <p class="text-lg md:text-xl text-blue-100 mb-10">Descubra cómo podemos transformar su negocio con soluciones a medida y resultados tangibles.</p>
-      <a href="#contacto" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl">
-        Contáctenos
-      </a>
-    </div>
-  </header>
-
-  <!-- ===== Quiénes Somos Section ===== -->
-  <section id="quienes-somos" class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-      <!-- Image Column -->
-      <div>
-        <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Imagen+Corporativa" 
-             alt="[Imagen de nuestro equipo corporativo en una reunión]" 
-             class="rounded-lg shadow-xl w-full h-auto">
-      </div>
+  return (
+    <div className="min-h-screen bg-white font-sans text-slate-800">
       
-      <!-- Text Column -->
-      <div>
-        <h2 class="text-4xl font-bold text-gray-800 mb-6">Quiénes Somos</h2>
-        <p class="text-lg text-gray-600 mb-4">
-          Somos un equipo de profesionales apasionados por la tecnología y la innovación. Con más de una década de experiencia, nos dedicamos a entender los desafíos únicos de cada cliente para ofrecer soluciones que realmente marcan la diferencia.
-        </p>
-        <p class="text-lg text-gray-600 mb-4">
-          Nuestra misión es ser el socio tecnológico estratégico que impulsa el crecimiento y la eficiencia de su empresa.
-        </p>
-        <p class="text-lg text-gray-600">
-          Creemos en las relaciones a largo plazo, basadas en la confianza, la transparencia y el éxito mutuo.
-        </p>
-      </div>
-    </div>
-  </section>
+      {/* --- BARRA DE NAVEGACIÓN --- */}
+      <nav className="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                T
+              </div>
+              <span className="font-bold text-2xl tracking-tight text-slate-900">TuEmpresa</span>
+            </div>
 
-  <!-- ===== Qué Hacemos Section ===== -->
-  <section id="que-hacemos" class="py-24 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center max-w-3xl mx-auto">
-        <h2 class="text-4xl font-bold text-gray-800 mb-6">Qué Hacemos</h2>
-        <p class="text-lg text-gray-600 mb-16">
-          Transformamos ideas en realidad a través de un proceso probado que garantiza calidad, eficiencia y alineación con sus objetivos de negocio.
-        </p>
-      </div>
-      
-      <!-- Process Steps -->
-      <div class="grid md:grid-cols-3 gap-10">
-        <!-- Step 1: Estrategia -->
-        <div class="text-center p-6 bg-white rounded-lg shadow-lg">
-          <div class="flex justify-center items-center mb-4">
-            <span class="inline-block p-4 bg-blue-100 text-blue-600 rounded-full">
-              <!-- Heroicon: Beaker -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.363-.442c-.44-.082-.843-.31-1.127-.665l-2.023-2.529a1.86 1.86 0 01-.13-.242l-1.071-3.648c-.282-.958-.893-1.782-1.734-2.189a1.86 1.86 0 00-2.27.099l-1.92 1.92a1.86 1.86 0 00-.547 1.022l-.442 2.363c-.082.44-.31.843-.665 1.127l-2.529 2.023a1.86 1.86 0 01-.242.13l-3.648 1.071c-.958.282-1.782.893-2.189 1.734a1.86 1.86 0 00.099 2.27l1.92 1.92a1.86 1.86 0 001.022.547l2.363.442c.44.082.843.31 1.127.665l2.023 2.529c.275.345.62.618.99.81l3.648 1.071c.958.282 1.782.893 2.189 1.734a1.86 1.86 0 002.27-.099l1.92-1.92a1.86 1.86 0 00.547-1.022l.442-2.363c.082-.44.31-.843.665-1.127l2.529-2.023a1.86 1.86 0 01.242-.13l3.648-1.071c.958-.282 1.782-.893 2.189-1.734a1.86 1.86 0 00-.099-2.27l-1.92-1.92z" />
-              </svg>
-            </span>
+            {/* Menú Desktop */}
+            <div className="hidden md:flex space-x-8 items-center">
+              <a href="#inicio" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Inicio</a>
+              <a href="#nosotros" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Quiénes Somos</a>
+              <a href="#servicios" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Servicios</a>
+              <a href="#contacto" className="bg-blue-600 text-white px-5 py-2.5 rounded-full font-medium hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                Contáctanos
+              </a>
+            </div>
+
+            {/* Botón Menú Móvil */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-slate-600 hover:text-blue-600 focus:outline-none p-2"
+              >
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Estrategia y Análisis</h3>
-          <p class="text-gray-600">Analizamos a fondo sus necesidades y el mercado para definir la hoja de ruta perfecta para su proyecto.</p>
         </div>
-        
-        <!-- Step 2: Desarrollo -->
-        <div class="text-center p-6 bg-white rounded-lg shadow-lg">
-          <div class="flex justify-center items-center mb-4">
-            <span class="inline-block p-4 bg-blue-100 text-blue-600 rounded-full">
-              <!-- Heroicon: Computer Desktop -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17.25H14.25M12 14.25V17.25M13.5 14.25L15 12.75M10.5 14.25L9 12.75M9 17.25C6.92893 17.25 5.25 15.5711 5.25 13.5V9.75C5.25 7.67893 6.92893 6 9 6H15C17.0711 6 18.75 7.67893 18.75 9.75V13.5C18.75 15.5711 17.0711 17.25 15 17.25H9Z" />
-              </svg>
-            </span>
+
+        {/* Menú Móvil Desplegable */}
+        {isMenuOpen && (
+          <div className="md:hidden absolute w-full bg-white border-b border-gray-100 shadow-xl">
+            <div className="px-4 pt-2 pb-6 space-y-2">
+              <a href="#inicio" onClick={closeMenu} className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50">Inicio</a>
+              <a href="#nosotros" onClick={closeMenu} className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50">Quiénes Somos</a>
+              <a href="#servicios" onClick={closeMenu} className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50">Servicios</a>
+              <a href="#contacto" onClick={closeMenu} className="block px-3 py-3 mt-4 text-center rounded-md text-base font-bold bg-blue-600 text-white hover:bg-blue-700">
+                Contactar Ahora
+              </a>
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Diseño y Desarrollo</h3>
-          <p class="text-gray-600">Creamos soluciones robustas, escalables y visualmente atractivas, utilizando las últimas tecnologías.</p>
-        </div>
-        
-        <!-- Step 3: Soporte -->
-        <div class="text-center p-6 bg-white rounded-lg shadow-lg">
-          <div class="flex justify-center items-center mb-4">
-            <span class="inline-block p-4 bg-blue-100 text-blue-600 rounded-full">
-              <!-- Heroicon: Lifebuoy (Support) -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 010 12.728m-12.728 0a9 9 0 010-12.728m12.728 0A9 9 0 005.636 5.636m12.728 0L12 12m-6.364 0L12 12m0 0L5.636 5.636M12 12l6.364 6.364" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 12m-3 0a3 3 0 116 0 3 3 0 01-6 0" />
-              </svg>
-            </span>
+        )}
+      </nav>
+
+      {/* --- SECCIÓN HÉROE (INICIO) --- */}
+      <section id="inicio" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8 animate-fade-in-up">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-700 font-medium text-sm">
+                <span className="w-2 h-2 rounded-full bg-blue-600 mr-2"></span>
+                Innovación y Estrategia
+              </div>
+              <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight">
+                Impulsamos el futuro de <span className="text-blue-600">tu negocio</span>
+              </h1>
+              <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
+                Ofrecemos soluciones integrales para empresas que buscan crecer. Desde consultoría estratégica hasta desarrollo tecnológico de vanguardia.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <a href="#servicios" className="inline-flex justify-center items-center px-8 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30">
+                  Ver Servicios
+                  <ChevronRight className="ml-2 w-5 h-5" />
+                </a>
+                <a href="#nosotros" className="inline-flex justify-center items-center px-8 py-4 bg-white text-slate-700 font-bold border border-slate-200 rounded-lg hover:bg-slate-50 transition-all">
+                  Conócenos
+                </a>
+              </div>
+            </div>
+            {/* Imagen Hero */}
+            <div className="relative lg:h-auto">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl transform lg:rotate-2 hover:rotate-0 transition-all duration-500">
+                <img 
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" 
+                  alt="Equipo trabajando en oficina moderna" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent"></div>
+              </div>
+              {/* Tarjeta flotante decorativa */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl hidden md:block border border-slate-100">
+                <div className="flex items-center gap-4">
+                  <div className="bg-green-100 p-3 rounded-full text-green-600">
+                    <BarChart2 size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-500">Crecimiento Anual</p>
+                    <p className="text-xl font-bold text-slate-900">+125%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Implementación y Soporte</h3>
-          <p class="text-gray-600">Acompañamos el lanzamiento y ofrecemos soporte continuo para asegurar el óptimo funcionamiento.</p>
         </div>
-      </div>
+        {/* Fondo decorativo */}
+        <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-slate-50/50 skew-x-12 translate-x-20"></div>
+      </section>
+
+      {/* --- SECCIÓN QUIÉNES SOMOS --- */}
+      <section id="nosotros" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Nuestra Esencia</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Más que proveedores, somos socios estratégicos comprometidos con el éxito de nuestros clientes a largo plazo.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-slate-50 p-8 rounded-2xl hover:bg-white hover:shadow-xl transition-all border border-slate-100 group">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:scale-110 transition-transform">
+                <Globe size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Misión Global</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Conectar negocios con oportunidades globales mediante tecnología innovadora y estrategias probadas en el mercado internacional.
+              </p>
+            </div>
+            
+            <div className="bg-slate-50 p-8 rounded-2xl hover:bg-white hover:shadow-xl transition-all border border-slate-100 group">
+              <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 mb-6 group-hover:scale-110 transition-transform">
+                <Users size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Equipo Experto</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Contamos con un equipo multidisciplinario de profesionales apasionados por la excelencia y el aprendizaje continuo.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-8 rounded-2xl hover:bg-white hover:shadow-xl transition-all border border-slate-100 group">
+              <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform">
+                <CheckCircle size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Calidad Garantizada</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Nuestros procesos están certificados y optimizados para asegurar resultados tangibles y medibles desde el primer día.
+              </p>
+            </div>
+          </div>
+
+          {/* Sección de Historia / Imagen Adicional */}
+          <div className="mt-20 bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
+            <div className="grid md:grid-cols-2">
+              <div className="p-10 md:p-16 flex flex-col justify-center">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                  Transformando ideas en realidad desde 2015
+                </h3>
+                <p className="text-slate-300 mb-8 leading-relaxed">
+                  Comenzamos como una pequeña startup con una gran visión. Hoy, ayudamos a cientos de empresas a navegar la era digital con confianza y seguridad. Creemos en el poder de la colaboración y la transparencia.
+                </p>
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <span className="block text-4xl font-bold text-blue-400">500+</span>
+                    <span className="text-sm text-slate-400">Proyectos Completados</span>
+                  </div>
+                  <div>
+                    <span className="block text-4xl font-bold text-blue-400">98%</span>
+                    <span className="text-sm text-slate-400">Clientes Satisfechos</span>
+                  </div>
+                </div>
+              </div>
+              <div className="h-full min-h-[300px]">
+                <img 
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80" 
+                  alt="Reunión de equipo" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECCIÓN QUÉ HACEMOS (SERVICIOS) --- */}
+      <section id="servicios" className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div className="max-w-2xl">
+              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm">Nuestros Servicios</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Soluciones adaptadas a tus necesidades</h2>
+            </div>
+            <a href="#contacto" className="hidden md:inline-flex items-center text-blue-600 font-bold hover:text-blue-700">
+              Ver todos los servicios <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Servicio 1 */}
+            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all border border-slate-100 group">
+              <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                <BarChart2 className="text-blue-600 w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">Consultoría Estratégica</h3>
+              <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                Análisis profundo de tu modelo de negocio para identificar áreas de mejora y optimización de recursos.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Auditoría interna</li>
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Planes de crecimiento</li>
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Gestión del cambio</li>
+              </ul>
+            </div>
+
+            {/* Servicio 2 */}
+            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all border border-slate-100 group">
+              <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                <Globe className="text-blue-600 w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">Desarrollo Web & App</h3>
+              <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                Creamos experiencias digitales memorables, rápidas y seguras que convierten visitantes en clientes fieles.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Diseño UX/UI</li>
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>E-commerce</li>
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Aplicaciones móviles</li>
+              </ul>
+            </div>
+
+            {/* Servicio 3 */}
+            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all border border-slate-100 group">
+              <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                <Users className="text-blue-600 w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">Marketing Digital</h3>
+              <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                Estrategias de posicionamiento y publicidad para llevar tu marca al público correcto en el momento exacto.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>SEO y SEM</li>
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Redes Sociales</li>
+                <li className="flex items-center text-sm text-slate-500"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Email Marketing</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="mt-8 text-center md:hidden">
+            <a href="#contacto" className="inline-flex items-center text-blue-600 font-bold hover:text-blue-700">
+              Ver todos los servicios <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* --- CTA / BANNER --- */}
+      <section className="py-16 bg-blue-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-6">¿Listo para escalar tu negocio al siguiente nivel?</h2>
+          <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+            Agenda una consulta gratuita de 30 minutos con nuestros expertos y descubre cómo podemos ayudarte hoy mismo.
+          </p>
+          <a href="#contacto" className="inline-block bg-white text-blue-600 font-bold px-8 py-4 rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
+            Solicitar Asesoría Gratis
+          </a>
+        </div>
+      </section>
+
+      {/* --- SECCIÓN CONTACTO --- */}
+      <section id="contacto" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16">
+            
+            {/* Información de Contacto */}
+            <div>
+              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm">Contáctanos</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-6">Hablemos de tu proyecto</h2>
+              <p className="text-slate-600 mb-10 leading-relaxed">
+                Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas. Estamos ansiosos por escuchar tus ideas.
+              </p>
+
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 bg-blue-100 p-3 rounded-lg text-blue-600">
+                    <Mail size={24} />
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-bold text-slate-900">Email</h4>
+                    <p className="text-slate-600">hola@tuempresa.com</p>
+                    <p className="text-slate-600">soporte@tuempresa.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 bg-blue-100 p-3 rounded-lg text-blue-600">
+                    <Phone size={24} />
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-bold text-slate-900">Teléfono</h4>
+                    <p className="text-slate-600">+34 912 345 678</p>
+                    <p className="text-slate-500 text-sm">Lun-Vie de 9am a 6pm</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 bg-blue-100 p-3 rounded-lg text-blue-600">
+                    <MapPin size={24} />
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-bold text-slate-900">Oficina</h4>
+                    <p className="text-slate-600">Calle Innovación 123, Piso 4</p>
+                    <p className="text-slate-600">28001, Madrid, España</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Formulario */}
+            <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-8">
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="col-span-2 md:col-span-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Nombre</label>
+                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="Juan Pérez" />
+                  </div>
+                  <div className="col-span-2 md:col-span-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Empresa</label>
+                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="Tu Empresa S.L." />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="juan@ejemplo.com" />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Mensaje</label>
+                  <textarea rows="4" className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all resize-none" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                </div>
+
+                <button type="submit" className="w-full bg-slate-900 text-white font-bold py-4 rounded-lg hover:bg-slate-800 transition-colors shadow-lg">
+                  Enviar Mensaje
+                </button>
+                <p className="text-xs text-center text-slate-400 mt-4">
+                  Al enviar este formulario aceptas nuestra política de privacidad.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FOOTER --- */}
+      <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center gap-2 mb-4 text-white">
+                <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center font-bold">T</div>
+                <span className="font-bold text-xl">TuEmpresa</span>
+              </div>
+              <p className="text-slate-400 max-w-sm mb-6">
+                Ayudamos a las empresas a crecer mediante soluciones tecnológicas innovadoras y estrategias de negocio efectivas.
+              </p>
+              <div className="flex space-x-4">
+                {/* Iconos sociales placeholder */}
+                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors cursor-pointer">In</div>
+                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors cursor-pointer">Tw</div>
+                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors cursor-pointer">Fb</div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-bold mb-4">Empresa</h4>
+              <ul className="space-y-2">
+                <li><a href="#nosotros" className="hover:text-blue-400 transition-colors">Sobre Nosotros</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Equipo</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Carreras</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Noticias</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-4">Legal</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Privacidad</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Términos</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Cookies</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+            <p>&copy; {new Date().getFullYear()} TuEmpresa S.L. Todos los derechos reservados.</p>
+            <p className="mt-2 md:mt-0">Diseñado con excelencia.</p>
+          </div>
+        </div>
+      </footer>
     </div>
-  </section>
+  );
+};
 
-  <!-- ===== Servicios Section ===== -->
-  <section id="servicios" class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center max-w-3xl mx-auto">
-        <h2 class="text-4xl font-bold text-gray-800 mb-6">Nuestros Servicios</h2>
-        <p class="text-lg text-gray-600 mb-16">
-          Ofrecemos una gama completa de servicios diseñados para cubrir todas las necesidades tecnológicas de su empresa.
-        </p>
-      </div>
+export default Website;
 
-      <!-- Service Cards -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <!-- Service Card 1 -->
-        <div class="bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h3 class="text-2xl font-bold text-gray-800 mb-3">Consultoría Digital</h3>
-          <p class="text-gray-600">Le ayudamos a definir su estrategia de transformación digital para optimizar procesos y maximizar el ROI.</p>
-        </div>
-        
-        <!-- Service Card 2 -->
-        <div class="bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h3 class="text-2xl font-bold text-gray-800 mb-3">Desarrollo de Software</h3>
-          <p class="text-gray-600">Creación de aplicaciones web, móviles y sistemas a medida que se adaptan perfectamente a su flujo de trabajo.</p>
-        </div>
-        
-        <!-- Service Card 3 -->
-        <div class="bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h3 class="text-2xl font-bold text-gray-800 mb-3">Marketing Online</h3>
-          <p class="text-gray-600">Estrategias de SEO, SEM y redes sociales para aumentar su visibilidad y conectar con su audiencia.</p>
-        </div>
-        
-        <!-- Service Card 4 -->
-        <div class="bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h3 class="text-2xl font-bold text-gray-800 mb-3">Análisis de Datos (BI)</h3>
-          <p class="text-gray-600">Convierta sus datos en información valiosa para la toma de decisiones estratégicas con nuestros dashboards.</p>
-        </div>
-        
-        <!-- Service Card 5 -->
-        <div class="bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h3 class="text-2xl font-bold text-gray-800 mb-3">Soporte TI y Cloud</h3>
-          <p class="text-gray-600">Administración de infraestructura en la nube y soporte técnico proactivo para que su operación nunca se detenga.</p>
-        </div>
-        
-        <!-- Service Card 6 -->
-        <div class="bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h3 class="text-2xl font-bold text-gray-800 mb-3">Diseño UX/UI</h3>
-          <p class="text-gray-600">Diseñamos interfaces intuitivas y atractivas que mejoran la experiencia del usuario y la conversión.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Contacto Section ===== -->
-  <section id="contacto" class="py-24 bg-blue-50">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold text-gray-800 mb-6">Hablemos de su Proyecto</h2>
-      <p class="text-lg text-gray-600 mb-12">
-        Complete el formulario a continuación y uno de nuestros especialistas se pondrá en contacto con usted a la brevedad.
-      </p>
-      
-      <!-- Contact Form -->
-      <form class="bg-white p-8 rounded-lg shadow-lg text-left space-y-6">
-        <div>
-          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
-          <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Ej: Juan Pérez">
-        </div>
-        
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
-          <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Ej: juan.perez@ejemplo.com">
-        </div>
-        
-        <div>
-          <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
-          <textarea id="message" name="message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Cuéntenos sobre su idea o necesidad..."></textarea>
-        </div>
-        
-        <div class="text-center">
-          <button type="submit" class="bg-blue-600 text-white font-bold py-3 px-10 rounded-full text-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
-            Enviar Mensaje
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- ===== Footer ===== -->
-  <footer class="bg-gray-800 text-gray-400 py-12">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <a href="#inicio" class="text-2xl font-bold text-white mb-4 inline-block">MiEmpresa</a>
-      <p class="mb-6">
-        Soluciones innovadoras para un mundo digital.
-      </p>
-      <!-- Social Media Icons (Placeholder) -->
-      <div class="flex justify-center space-x-6 mb-8">
-        <a href="#" class="hover:text-white transition-colors">[Facebook]</a>
-        <a href="#" class="hover:text-white transition-colors">[LinkedIn]</a>
-        <a href="#" class="hover:text-white transition-colors">[Twitter/X]</a>
-      </div>
-      <p class="text-sm">
-        &copy; 2025 MiEmpresa. Todos los derechos reservados.
-      </p>
-    </div>
-  </footer>
-
-  <!-- ===== JavaScript ===== -->
-  <script>
-    // --- Mobile Menu Toggle ---
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    menuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // --- Smooth Scroll & Close Mobile Menu on Link Click ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        // Scroll to section
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-        
-        // If it's a mobile menu link, close the menu
-        if (mobileMenu.contains(this) && !mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
-        }
-      });
-    });
-  </script>
-
-</body>
-</html>
